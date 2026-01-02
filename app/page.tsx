@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Discover Our Products | Appscrip",
   description:
-    "Explore a curated collection of premium products with customizable filters and recommendations.",
+  "Explore a curated collection of premium products with customizable filters and recommendations.",
 };
 
 import Header from "../components/Header";
@@ -9,9 +9,10 @@ import Filters from "../components/Filters";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
 
+export const dynamic = "force-static";
 export default async function HomePage() {
   const res = await fetch("https://fakestoreapi.com/products", {
-    cache: "no-store",
+    next: { revalidate: 3600 },
   });
   const products = await res.json();
 
