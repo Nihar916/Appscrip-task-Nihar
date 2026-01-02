@@ -12,8 +12,11 @@ import Footer from "../components/Footer";
 export const dynamic = "force-static";
 export default async function HomePage() {
   const res = await fetch("https://fakestoreapi.com/products", {
-    next: { revalidate: 3600 },
+    cache: "force-cache",
   });
+  if(!res.ok){
+    throw new Error("Failed to fetch products");
+  }
   const products = await res.json();
 
   return (
